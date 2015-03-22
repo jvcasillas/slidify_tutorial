@@ -18,7 +18,7 @@ assets      : {assets: ../../assets}
 ## Slidify
 
 - I am going to show you how to make a presentation just like this one
-- You can download this presentation [here](), use it as a template and edit as you like
+- You can download this presentation [here](https://github.com/jvcasill/slidify_tutorial), use it as a template and edit as you like
 - Or you can follow these instructions to make one of your own
 
 --- .segue bg:grey
@@ -137,7 +137,7 @@ assets      : {assets: ../../assets}
 ### `---`
 
 - To end a slide use three dashes
-- Importantly after you end a slide, you designate the class the next one 
+- Importantly after you end a slide, you designate the class of the next one 
 - The default (what you see here) is `.class #id`
 - So I ended this slide using `--- .class #id`
 
@@ -161,7 +161,7 @@ assets      : {assets: ../../assets}
 ### `---`
 
 - To end a slide use three dashes
-- Importantly after you end a slide, you designate the class the next one 
+- Importantly after you end a slide, you designate the class of the next one 
 - The default (what you see here) is `.class #id`
 - So I ended this slide using `--- .class #id`
 
