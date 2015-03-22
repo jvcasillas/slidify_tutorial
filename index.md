@@ -18,7 +18,7 @@ assets      : {assets: ../../assets}
 ## Slidify
 
 - I am going to show you how to make a presentation just like this one
-- You can download this presentation [here](https://github.com/jvcasill/slidify_tutorial), use it as a template and edit as you like
+- You can download the current version of this presentation [here](https://github.com/jvcasill/slidify_tutorial/tree/gh-pages), use it as a template and edit as you like
 - Or you can follow these instructions to make one of your own
 
 --- .segue bg:grey
