@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Example slidify</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Example slidify">
+  <meta name="author" content="Joseph Casillas">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/style.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='300px' src="assets/img/ua.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/ua.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Example slidify</h1>
+    <h2>Subtitle goes here</h2>
+    <p>Joseph Casillas<br/>PhD Candidate</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Slidify</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>I am going to show you how to make a presentation just like this one</li>
+<li>You can download this presentation <a href="">here</a>, use it as a template and edit as you like</li>
+<li>Or you can follow the instructions to make one of your own</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-2" style="background:grey;">
+  <hgroup>
+    <h1>First things first...</h1>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Install packages</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>You need to make sure you have all of the necessary dependencies installed on your computer</li>
+<li>Open Rstudio and copy and paste the following code into the console (you only need to do this once)</li>
+</ul>
+
+<p></br></p>
+
+<pre><code>install.packages(&quot;devtools&quot;)  
+install_github(&#39;slidify&#39;, &#39;ramnathv&#39;)  
+install_github(&#39;slidifyLibraries&#39;, &#39;ramnathv&#39;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Create slidify</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Each presentation is called a &#39;deck&#39;</li>
+<li>Set your working directory to wherever you want the folder</li>
+<li>Load slidify package with <code>library(slidify)</code></li>
+<li>Create the deck with <code>author(&#39;mydeck&#39;)</code>
+
+<ul>
+<li>You can name it whatever you want</li>
+<li>This will create a folder with all the necessary files</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Explore the deck</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>You should now have a folder in your working directory with the name you entered above</li>
+<li>All of the necessary files are there</li>
+<li>The <code>.Rmd</code> file is the only one you need to work with
+
+<ul>
+<li>This is where you will actually modify the deck (your presentation)</li>
+<li>It should have opened automatically in RStudio</li>
+</ul></li>
+<li>The YAML front matter (the very first thing in the <code>.Rmd</code> file) should look like this...</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <pre><code>---  
+title       :  
+subtitle    :  
+author      :  
+job         :  
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}  
+highlighter : highlight.js  # {highlight.js, prettify, highlight}  
+hitheme     : tomorrow      #   
+widgets     : []            # {mathjax, quiz, bootstrap}  
+mode        : selfcontained # {standalone, draft}  
+knit        : slidify::knit2slides  
+---  
+</code></pre>
+
+<ul>
+<li>You can fill in the information as you see fit
+
+<ul>
+<li>You will typically use <code>title, subtitle, author, job</code></li>
+<li>but the <code>widgets</code> are also important</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <pre><code>---
+title       : Example slidify
+subtitle    : Subtitle goes here
+author      : Joseph Casillas
+job         : PhD Candidate
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax, quiz, bootstrap] # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+logo        : ua.png
+biglogo     : ua.png
+assets      : {assets: ../../assets}
+---
+</code></pre>
+
+<ul>
+<li>You can make your deck look like this</li>
+<li>Specifically, you should add <code>widgets     : [mathjax, quiz, bootstrap]</code></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Widgets</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The widgets will allow you to...
+
+<ul>
+<li>make quizzes</li>
+<li>use math formulas and </li>
+<li>utilize the bootstrap framework</li>
+</ul></li>
+<li>The logos are located in the <code>assets &gt; img</code> folder
+
+<ul>
+<li>This is where you will add any other images you want to put in your presentation</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>RMarkdown syntax</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Markdown syntax is very easy</li>
+<li>You can find the basics <a href="http://rmarkdown.rstudio.com">here</a></li>
+<li>The main thing you need to know is that you make new slides using <code>---</code> and <code>##</code></li>
+</ul>
+
+<h3><code>##</code></h3>
+
+<ul>
+<li>The double pound sign (hashtags) create the title of the slide</li>
+<li>The title of this slide was made with <code>## Rmarkdown syntax</code></li>
+</ul>
+
+<h3><code>---</code></h3>
+
+<ul>
+<li>To end a slide use three dashes</li>
+<li>Importantly after you end a slide, you designate the class the next one </li>
+<li>The default (what you see here) is <code>.class #id</code></li>
+<li>So I ended this slide using <code>--- .class #id</code></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <pre><code>## RMarkdown syntax
+
+- Markdown syntax is very easy
+- You can find the basics [here](http://rmarkdown.rstudio.com)
+- The main thing you need to know is that you make new slides using `---` and `##`
+
+### `##`
+
+- The double pound sign (hashtags) create the title of the slide
+- The title of this slide was made with `## Rmarkdown syntax`
+
+### `---`
+
+- To end a slide use three dashes
+- Importantly after you end a slide, you designate the class the next one 
+- The default (what you see here) is `.class #id`
+- So I ended this slide using `--- .class #id`
+
+ --- .class #id
+</code></pre>
+
+<ul>
+<li>This is the previous slide in markdown</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Creating the deck</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Once you have made the slides in markdown you are ready to generate the html file that will be your presentation</li>
+<li>You do this using the <code>slidify()</code> command like this...</li>
+</ul>
+
+<pre><code>slidify(&#39;index.Rmd&#39;)
+</code></pre>
+
+<ul>
+<li>This will generate a <code>index.html</code> file. </li>
+<li>Double click it and open your presentation in web browser</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-12" style="background:grey;">
+  <hgroup>
+    <h2>More to come...</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>R code</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">plot(cars)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" /></p>
+
+<div class='well'>
+<p><b> Note: </b> You can hit <code>p</code> on any slide to reveal the source (this doesn't seem to work in safari</p>
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Radio</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Eleanor scores 680 on the Mathematics part of the SAT. The distribution of SAT scores in a reference population is Normal, with mean 500 and standard deviation 100. Gerald takes the American College Testing (ACT) Mathematics test and scores 27. ACT scores are Normally distributed with mean 18 and standard deviation 6. Assuming that both tests measure the same kind of ability, who did better?</p>
+
+<ol>
+<li><em>Eleanor</em></li>
+<li>Gerald</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-explanation">
+  <p>The best way to compare their performance is to calculate their standardized scores.</p>
+
+<p>\[z_E = \frac{680 - 500}{100} = 1.8\]
+\[z_G = \frac{27 - 18}{6} = 1.5\]</p>
+
+<p>Since, Eleanor has a higher standardized score, we can conclude that Eleanor did better!</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Radio (Two Column)</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div class='row-fluid'>
+  <div class='span6'>
+    <p><img src=https://oli.cmu.edu/repository/webcontent/470835bf80020ca60018d5a6c359d34c/_u2_summarizing_data/_m2_examining_relationships/webcontent/linear1.gif></p>
+
+  </div>
+  <div class='span6'>
+    <div class="quiz quiz-single well new">
+      <p>Which of these two scatterplots have a higher correlation?</p>
+
+<ol>
+<li>A</li>
+<li>B</li>
+</ol>
+
+      <button class="quiz-submit btn btn-primary">Submit</button>
+      <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+      <button class="quiz-show-answer btn btn-success">Show Answer</button>
+      <button class="quiz-clear btn btn-danger">Clear</button>
+      
+      <div class="quiz-explanation">
+  <p>Both have the same correlation.</p>
+
+</div>
+    </div>
+  </div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Checkbox</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-multiple well" data-individual>
+  <p>Linda is 31 years old, single, outspoken, and very bright. She majored in philosophy. As a student, she was deeply concerned with issues of discrimination and social justice, and also participated in anti-nuclear demonstrations.</p>
+
+<p>Which is more probable?</p>
+
+<ol>
+<li><em>Linda is a bank teller.</em></li>
+<li>Linda is a bank teller and is active in the feminist movement.</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p>Think about the probabilities of each event, and that of both of them together.</p>
+
+</div>
+<div class="quiz-explanation">
+  <p>If you chose (2), stop back and think. Suppose we denote the event of Linda being a teller by A and the event she is active in the feminist movement by B, then probabilities in question can be written as.</p>
+
+<ul>
+<li>P(A)</li>
+<li>\(P(A \cap B)\)</li>
+</ul>
+
+<p>This is called the <a href="http://en.wikipedia.org/wiki/Conjunction_fallacy">conjugacy fallacy</a> that occurs when it is assumed that specific conditions are more probable than a single general one.</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Multi Text</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>The length of human pregnancies from conception to birth varies according to a distribution that is approximately Normal with mean 266 days and standard deviation 16 days.</p>
+
+<ol>
+<li>What percent of pregnancies last fewer than 240 days?</li>
+<li>What percent of pregnancies last between 240 and 270 days?</li>
+<li>How long do the longest 25% pregnancies last?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-explanation">
+  <ol>
+<li><span class='answer'>5.2081279</span></li>
+<li><span class='answer'>54.6625046</span></li>
+<li><span class='answer'>276.791836</span></li>
+</ol>
+
+</div>
+<div class="quiz-hint">
+  <p>This is a hint</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Submit and Compare</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<p>What is the sample space for this experiment?</p>
+
+
+<textarea rows="" style="width:95%" class='submitCompare'
+  placeholder='Type your answer (at least 140 characters)'>
+</textarea>
+<a class='btn btn-success submitCompare'>
+  Submit and Compare
+</a>
+<a class='btn btn-danger clearSubmitCompare'>Clear</a>
+
+<div class='explanation' style='display: none;'>
+  <p>The sample space for this experiment is</p>
+
+<p>{HH, HT, TH, HH}</p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Submit and Compare (2 Column)</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div class='row-fluid'>
+  <div class='span6'>
+    <p>The solid curve represents the distribution of heights of all males in the US. The dotted curve represents the distribution of heights reported by males on OkCupid, an online dating website.</p>
+
+<p><img class=center
+  src=http://cdn.okcimg.com/blog/lies/MaleHeightDistribution.png width=400px></p>
+
+  </div>
+  <div class='span6'>
+    <p>What is happening here?</p>
+
+    <textarea rows="5" style="width:95%" class='submitCompare'
+      placeholder='Type your answer (at least 140 characters)'>
+</textarea>
+    <a class='btn btn-success submitCompare' data-title=''>
+      Submit and Compare
+    </a>
+    <a class='btn btn-danger clearSubmitCompare'>Clear</a>
+    <div class="explanation" style="display:none;">
+      <p>It is easier to interpret things if we overlay a fitted normal distribution for the heights reported by males on OkCupid. Looking at the graph carefully, we can observe two things.</p>
+
+<p><img class=center
+  src=http://cdn.okcimg.com/blog/lies/MaleHeightDistributionYoink.png width=400px></p>
+
+<ol>
+<li>Males on OkCupid probably tend to inflate their heights!</li>
+<li>You can also see a more subtle vanity at work: starting at roughly 5&#39; 8&quot;, the top of the dotted curve tilts even further rightward. This means that guys as they get closer to six feet round up a bit more than usual, stretching for that coveted psychological benchmark.</li>
+</ol>
+
+    </div>
+  </div>
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Slidify'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='First things first...'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Install packages'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Create slidify'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Explore the deck'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title=''>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title=''>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Widgets'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='RMarkdown syntax'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title=''>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Creating the deck'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='More to come...'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='R code'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Radio'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Radio (Two Column)'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Checkbox'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Multi Text'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Submit and Compare'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Submit and Compare (2 Column)'>
+         19
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

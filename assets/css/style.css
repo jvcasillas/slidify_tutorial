@@ -1,0 +1,78 @@
+p {
+	font-size: 25px !important;
+	color: #222 !important;
+}
+
+ul {
+	font-size: 35px !important;
+	color: #222 !important;
+}
+
+h2 {
+  color: #AA0000 !important;
+}
+
+table {
+	font-size: 35px !important;
+}
+
+blockquote {
+	background-color: #f2f2f2 !important;
+}
+
+strong {
+	color: #AA0000 !important;
+}
+
+blue {
+	color: #0000CC;
+	font-weight: bold;
+}
+
+.rmdtable {
+	color: #222 !important;
+}
+
+.big {
+	font-size: 40px !important;
+}
+
+.small {
+	font-size: 20px !important;
+}
+
+aside.gdbar img {
+  width: 75px; 
+  height: 75px; 
+  position: absolute;
+  right: 0;
+  margin: 8px 15px;
+}
+
+.title-slide {
+  background-color: white;
+}
+
+.title-slide hgroup > h1, 
+.title-slide hgroup > h2 {
+  color: #222 ;  /* ; #EF5150*/
+}
+
+body {
+  background: #303030;
+}
+
+.segue h1 {
+  font-weight: 600;
+  font-size: 45px !important;
+  line-height: 45px !important;
+  letter-spacing: -2px !important;
+  color: #fff !important;
+}
+
+.title-slide hgroup h1 {
+  font-size: 65px;
+  line-height: 1.4;
+  letter-spacing: -3px;
+  color: #515151 !important;
+}
