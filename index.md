@@ -18,8 +18,8 @@ assets      : {assets: ../../assets}
 ## Slidify
 
 - I am going to show you how to make a presentation just like this one
-- You can download this presentation [here](), use it as a template and edit as you like
-- Or you can follow the instructions to make one of your own
+- You can download this presentation [here](https://github.com/jvcasill/slidify_tutorial), use it as a template and edit as you like
+- Or you can follow these instructions to make one of your own
 
 --- .segue bg:grey
 
