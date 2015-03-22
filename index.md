@@ -48,7 +48,7 @@ install_github('slidifyLibraries', 'ramnathv')
 - Set your working directory to wherever you want the folder
 - Load slidify package with `library(slidify)`
 - Create the deck with `author('mydeck')`
-	- You can name it whatever you want
+	- Again, you can name it whatever you want
 	- This will create a folder with all the necessary files
 
 --- .class #id
@@ -107,7 +107,7 @@ assets      : {assets: ../../assets}
 ---
 ```
 
-- You can make your deck look like this
+- You should make your deck look like this (with your name, title, etc.)
 - Specifically, you should add `widgets     : [mathjax, quiz, bootstrap]`
 
 --- .class #id
@@ -119,7 +119,7 @@ assets      : {assets: ../../assets}
 	- use math formulas and 
 	- utilize the bootstrap framework
 - The logos are located in the `assets > img` folder
-	- This is where you will add any other images you want to put in your presentation
+	- This is where you will add any other images you want to put in your presentation (more on this later)
 
 --- .class #id
 
@@ -137,7 +137,7 @@ assets      : {assets: ../../assets}
 ### `---`
 
 - To end a slide use three dashes
-- Importantly after you end a slide, you designate the class the next one 
+- Importantly after you end a slide, you designate the class of the next one 
 - The default (what you see here) is `.class #id`
 - So I ended this slide using `--- .class #id`
 
