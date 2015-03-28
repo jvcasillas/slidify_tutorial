@@ -551,19 +551,19 @@ It is easier to interpret things if we overlay a fitted normal distribution for 
     };
 </script>
 
---- &interactive
+---
 
 ## Interactive Console
 
 <!-- MotionChart generated in R 3.1.3 by googleVis 0.5.8 package -->
-<!-- Sat Mar 28 14:50:55 2015 -->
+<!-- Sat Mar 28 14:52:32 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartIDd8c19d13c90 () {
+function gvisDataMotionChartIDd8c557f0f7d () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -661,15 +661,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartIDd8c19d13c90() {
-var data = gvisDataMotionChartIDd8c19d13c90();
+function drawChartMotionChartIDd8c557f0f7d() {
+var data = gvisDataMotionChartIDd8c557f0f7d();
 var options = {};
 options["width"] =    600;
 options["height"] =    500;
 options["state"] = "";
 
     var chart = new google.visualization.MotionChart(
-    document.getElementById('MotionChartIDd8c19d13c90')
+    document.getElementById('MotionChartIDd8c557f0f7d')
     );
     chart.draw(data,options);
     
@@ -693,9 +693,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartMotionChartIDd8c19d13c90);
+callbacks.push(drawChartMotionChartIDd8c557f0f7d);
 })();
-function displayChartMotionChartIDd8c19d13c90() {
+function displayChartMotionChartIDd8c557f0f7d() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -719,11 +719,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartIDd8c19d13c90"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartIDd8c557f0f7d"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartIDd8c19d13c90" 
+<div id="MotionChartIDd8c557f0f7d" 
   style="width: 600; height: 500;">
 </div>
 
