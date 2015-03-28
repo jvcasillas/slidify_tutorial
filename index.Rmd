@@ -6,7 +6,8 @@ job         : PhD Candidate
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
-widgets     : [mathjax, quiz, bootstrap] # {mathjax, quiz, bootstrap}
+widgets     : [mathjax, quiz, bootstrap, interactive] # {mathjax, quiz, bootstrap}
+ext_widgets : {rCharts: [libraries/nvd3]}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 logo        : ua.png
@@ -322,3 +323,37 @@ It is easier to interpret things if we overlay a fitted normal distribution for 
 
 1. Males on OkCupid probably tend to inflate their heights!
 2. You can also see a more subtle vanity at work: starting at roughly 5' 8", the top of the dotted curve tilts even further rightward. This means that guys as they get closer to six feet round up a bit more than usual, stretching for that coveted psychological benchmark.
+
+---
+
+## Interactive Chart
+
+</br>
+
+```{r echo = F, results = 'asis', message=FALSE}
+require(rCharts)
+group <- c(rep("g1", 10), rep("g2", 10), rep("g3", 10))
+phon  <- c(rep("i", 1), rep("I", 1), rep("E", 1))
+freq1  <- floor(runif(10, 0, 20))
+freq2  <- floor(runif(10, 15, 30))
+freq3  <- floor(runif(10, 25, 40))
+freq <- c(freq1, freq2, freq3)
+
+df <- data.frame(Group = group, 
+                 Phoneme = phon, 
+                 Frequency = freq)
+n1 <- nPlot(Frequency ~ Phoneme, group = 'Group', type = 'multiBarChart',
+  data = df)
+n1$print('chart1')
+```
+
+--- &interactive
+
+## Interactive Console
+
+```{r opts.label = 'interactive', results = 'asis', echo=FALSE, warning=FALSE, message=FALSE}
+require(googleVis)
+M1 <- gvisMotionChart(Fruits, idvar = 'Fruit', timevar = 'Year')
+print(M1, tag = 'chart')
+```
+

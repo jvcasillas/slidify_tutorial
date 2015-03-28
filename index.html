@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
   <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
 <link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="libraries/widgets/nvd3/css/nv.d3.css"></link>
+<link rel=stylesheet href="libraries/widgets/nvd3/css/rNVD3.css"></link>
 <link rel=stylesheet href="./assets/css/ribbons.css"></link>
 <link rel=stylesheet href="./assets/css/style.css"></link>
 
@@ -26,7 +29,11 @@
     src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
   </script>
   
-  
+  <script src="libraries/widgets/nvd3/js/jquery-1.8.2.min.js"></script>
+<script src="libraries/widgets/nvd3/js/d3.v3.min.js"></script>
+<script src="libraries/widgets/nvd3/js/nv.d3.min-new.js"></script>
+<script src="libraries/widgets/nvd3/js/fisheye.js"></script>
+
 
 </head>
 <body style="opacity: 0">
@@ -552,6 +559,451 @@ assets      : {assets: ../../assets}
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Interactive Chart</h2>
+  </hgroup>
+  <article data-timings="">
+    <p></br></p>
+
+<div id = 'chart1' class = 'rChart nvd3'></div>
+
+<script type='text/javascript'>
+ $(document).ready(function(){
+      drawchart1()
+    });
+    function drawchart1(){  
+      var opts = {
+ "dom": "chart1",
+"width":    800,
+"height":    400,
+"x": "Phoneme",
+"y": "Frequency",
+"group": "Group",
+"type": "multiBarChart",
+"id": "chart1" 
+},
+        data = [
+ {
+ "Group": "g1",
+"Phoneme": "i",
+"Frequency":              8 
+},
+{
+ "Group": "g1",
+"Phoneme": "I",
+"Frequency":             13 
+},
+{
+ "Group": "g1",
+"Phoneme": "E",
+"Frequency":             10 
+},
+{
+ "Group": "g1",
+"Phoneme": "i",
+"Frequency":              1 
+},
+{
+ "Group": "g1",
+"Phoneme": "I",
+"Frequency":              4 
+},
+{
+ "Group": "g1",
+"Phoneme": "E",
+"Frequency":             13 
+},
+{
+ "Group": "g1",
+"Phoneme": "i",
+"Frequency":             15 
+},
+{
+ "Group": "g1",
+"Phoneme": "I",
+"Frequency":              5 
+},
+{
+ "Group": "g1",
+"Phoneme": "E",
+"Frequency":             18 
+},
+{
+ "Group": "g1",
+"Phoneme": "i",
+"Frequency":              6 
+},
+{
+ "Group": "g2",
+"Phoneme": "I",
+"Frequency":             26 
+},
+{
+ "Group": "g2",
+"Phoneme": "E",
+"Frequency":             15 
+},
+{
+ "Group": "g2",
+"Phoneme": "i",
+"Frequency":             17 
+},
+{
+ "Group": "g2",
+"Phoneme": "I",
+"Frequency":             17 
+},
+{
+ "Group": "g2",
+"Phoneme": "E",
+"Frequency":             29 
+},
+{
+ "Group": "g2",
+"Phoneme": "i",
+"Frequency":             23 
+},
+{
+ "Group": "g2",
+"Phoneme": "I",
+"Frequency":             27 
+},
+{
+ "Group": "g2",
+"Phoneme": "E",
+"Frequency":             17 
+},
+{
+ "Group": "g2",
+"Phoneme": "i",
+"Frequency":             24 
+},
+{
+ "Group": "g2",
+"Phoneme": "I",
+"Frequency":             29 
+},
+{
+ "Group": "g3",
+"Phoneme": "E",
+"Frequency":             38 
+},
+{
+ "Group": "g3",
+"Phoneme": "i",
+"Frequency":             26 
+},
+{
+ "Group": "g3",
+"Phoneme": "I",
+"Frequency":             39 
+},
+{
+ "Group": "g3",
+"Phoneme": "E",
+"Frequency":             39 
+},
+{
+ "Group": "g3",
+"Phoneme": "i",
+"Frequency":             28 
+},
+{
+ "Group": "g3",
+"Phoneme": "I",
+"Frequency":             35 
+},
+{
+ "Group": "g3",
+"Phoneme": "E",
+"Frequency":             34 
+},
+{
+ "Group": "g3",
+"Phoneme": "i",
+"Frequency":             34 
+},
+{
+ "Group": "g3",
+"Phoneme": "I",
+"Frequency":             32 
+},
+{
+ "Group": "g3",
+"Phoneme": "E",
+"Frequency":             36 
+} 
+]
+  
+      if(!(opts.type==="pieChart" || opts.type==="sparklinePlus" || opts.type==="bulletChart")) {
+        var data = d3.nest()
+          .key(function(d){
+            //return opts.group === undefined ? 'main' : d[opts.group]
+            //instead of main would think a better default is opts.x
+            return opts.group === undefined ? opts.y : d[opts.group];
+          })
+          .entries(data);
+      }
+      
+      if (opts.disabled != undefined){
+        data.map(function(d, i){
+          d.disabled = opts.disabled[i]
+        })
+      }
+      
+      nv.addGraph(function() {
+        var chart = nv.models[opts.type]()
+          .width(opts.width)
+          .height(opts.height)
+          
+        if (opts.type != "bulletChart"){
+          chart
+            .x(function(d) { return d[opts.x] })
+            .y(function(d) { return d[opts.y] })
+        }
+          
+         
+        
+          
+        
+
+        
+        
+        
+      
+       d3.select("#" + opts.id)
+        .append('svg')
+        .datum(data)
+        .transition().duration(500)
+        .call(chart);
+
+       nv.utils.windowResize(chart.update);
+       return chart;
+      });
+    };
+</script>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Interactive Console</h2>
+  </hgroup>
+  <article data-timings="">
+     
+<div class='row-fluid'>
+  <div class='span5'>
+    <form id="knitForm21" data-cell="21">
+      <!-- MotionChart generated in R 3.1.3 by googleVis 0.5.8 package -->
+
+<!-- Sat Mar 28 14:41:41 2015 -->
+
+<!-- jsHeader -->
+
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataMotionChartIDc842f436339 () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+ "Apples",
+2008,
+"West",
+98,
+78,
+20,
+"2008-12-31" 
+],
+[
+ "Apples",
+2009,
+"West",
+111,
+79,
+32,
+"2009-12-31" 
+],
+[
+ "Apples",
+2010,
+"West",
+89,
+76,
+13,
+"2010-12-31" 
+],
+[
+ "Oranges",
+2008,
+"East",
+96,
+81,
+15,
+"2008-12-31" 
+],
+[
+ "Bananas",
+2008,
+"East",
+85,
+76,
+9,
+"2008-12-31" 
+],
+[
+ "Oranges",
+2009,
+"East",
+93,
+80,
+13,
+"2009-12-31" 
+],
+[
+ "Bananas",
+2009,
+"East",
+94,
+78,
+16,
+"2009-12-31" 
+],
+[
+ "Oranges",
+2010,
+"East",
+98,
+91,
+7,
+"2010-12-31" 
+],
+[
+ "Bananas",
+2010,
+"East",
+81,
+71,
+10,
+"2010-12-31" 
+] 
+];
+data.addColumn('string','Fruit');
+data.addColumn('number','Year');
+data.addColumn('string','Location');
+data.addColumn('number','Sales');
+data.addColumn('number','Expenses');
+data.addColumn('number','Profit');
+data.addColumn('string','Date');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartMotionChartIDc842f436339() {
+var data = gvisDataMotionChartIDc842f436339();
+var options = {};
+options["width"] =    600;
+options["height"] =    500;
+options["state"] = "";
+
+    var chart = new google.visualization.MotionChart(
+    document.getElementById('MotionChartIDc842f436339')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "motionchart";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartMotionChartIDc842f436339);
+})();
+function displayChartMotionChartIDc842f436339() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+
+<!-- jsChart -->  
+
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartIDc842f436339"></script>
+ 
+
+<!-- divChart -->
+
+<div id="MotionChartIDc842f436339" 
+  style="width: 600; height: 500;">
+</div>
+
+      <div id='aceeditor21' style="height:px;"></div>
+      <div class='interactive btn-toolbar pull-left'>
+        <div class='btn-group'>
+          <a class='btn btn-small action-button' id='runCode21' data-action='runCode'
+            data-cell='21' rel='tooltip' data-title='Run Code'>
+            <i class='icon-play'></i>
+          </a>
+          <a class='btn btn-small iBtn' id='testCode21' data-action='testCode'
+             data-cell='21' rel='tooltip' data-title='Test Code'>
+            <i class='icon-check'></i>
+          </a>
+          <a class='btn btn-small iBtn' id='clearResult21' data-action='clearResult'
+             data-cell='21' rel='tooltip' data-title='Clear Output'>
+            <i class="icon-remove"></i>
+          </a>
+          <a class='btn  btn-small iBtn' id='getHint21' rel='tooltip' 
+            data-title="Get Hint" data-action='getHint'
+            data-cell='21' data-hint="">
+            <i class="icon-bookmark"></i>
+          </a>
+        </div>
+      </div>    </form>
+  </div>
+  <div class='span7'>
+    <iframe id="knitResult21" class='shiny-html-output'></iframe>
+  </div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
@@ -670,6 +1122,18 @@ assets      : {assets: ../../assets}
          19
       </a>
     </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Interactive Chart'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Interactive Console'>
+         21
+      </a>
+    </li>
   </ul>
   </div>  <!--[if IE]>
     <script 
@@ -684,6 +1148,9 @@ assets      : {assets: ../../assets}
 <script src="libraries/widgets/quiz/js/quiz-app.js"></script>
 <script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
 <script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
 
   <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
   <script type="text/x-mathjax-config">

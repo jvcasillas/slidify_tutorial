@@ -6,7 +6,8 @@ job         : PhD Candidate
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
-widgets     : [mathjax, quiz, bootstrap] # {mathjax, quiz, bootstrap}
+widgets     : [mathjax, quiz, bootstrap, interactive] # {mathjax, quiz, bootstrap}
+ext_widgets : {rCharts: [libraries/nvd3]}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 logo        : ua.png
@@ -325,3 +326,404 @@ It is easier to interpret things if we overlay a fitted normal distribution for 
 
 1. Males on OkCupid probably tend to inflate their heights!
 2. You can also see a more subtle vanity at work: starting at roughly 5' 8", the top of the dotted curve tilts even further rightward. This means that guys as they get closer to six feet round up a bit more than usual, stretching for that coveted psychological benchmark.
+
+---
+
+## Interactive Chart
+
+</br>
+
+
+<div id = 'chart1' class = 'rChart nvd3'></div>
+<script type='text/javascript'>
+ $(document).ready(function(){
+      drawchart1()
+    });
+    function drawchart1(){  
+      var opts = {
+ "dom": "chart1",
+"width":    800,
+"height":    400,
+"x": "Phoneme",
+"y": "Frequency",
+"group": "Group",
+"type": "multiBarChart",
+"id": "chart1" 
+},
+        data = [
+ {
+ "Group": "g1",
+"Phoneme": "i",
+"Frequency":              8 
+},
+{
+ "Group": "g1",
+"Phoneme": "I",
+"Frequency":             13 
+},
+{
+ "Group": "g1",
+"Phoneme": "E",
+"Frequency":             10 
+},
+{
+ "Group": "g1",
+"Phoneme": "i",
+"Frequency":              1 
+},
+{
+ "Group": "g1",
+"Phoneme": "I",
+"Frequency":              4 
+},
+{
+ "Group": "g1",
+"Phoneme": "E",
+"Frequency":             13 
+},
+{
+ "Group": "g1",
+"Phoneme": "i",
+"Frequency":             15 
+},
+{
+ "Group": "g1",
+"Phoneme": "I",
+"Frequency":              5 
+},
+{
+ "Group": "g1",
+"Phoneme": "E",
+"Frequency":             18 
+},
+{
+ "Group": "g1",
+"Phoneme": "i",
+"Frequency":              6 
+},
+{
+ "Group": "g2",
+"Phoneme": "I",
+"Frequency":             26 
+},
+{
+ "Group": "g2",
+"Phoneme": "E",
+"Frequency":             15 
+},
+{
+ "Group": "g2",
+"Phoneme": "i",
+"Frequency":             17 
+},
+{
+ "Group": "g2",
+"Phoneme": "I",
+"Frequency":             17 
+},
+{
+ "Group": "g2",
+"Phoneme": "E",
+"Frequency":             29 
+},
+{
+ "Group": "g2",
+"Phoneme": "i",
+"Frequency":             23 
+},
+{
+ "Group": "g2",
+"Phoneme": "I",
+"Frequency":             27 
+},
+{
+ "Group": "g2",
+"Phoneme": "E",
+"Frequency":             17 
+},
+{
+ "Group": "g2",
+"Phoneme": "i",
+"Frequency":             24 
+},
+{
+ "Group": "g2",
+"Phoneme": "I",
+"Frequency":             29 
+},
+{
+ "Group": "g3",
+"Phoneme": "E",
+"Frequency":             38 
+},
+{
+ "Group": "g3",
+"Phoneme": "i",
+"Frequency":             26 
+},
+{
+ "Group": "g3",
+"Phoneme": "I",
+"Frequency":             39 
+},
+{
+ "Group": "g3",
+"Phoneme": "E",
+"Frequency":             39 
+},
+{
+ "Group": "g3",
+"Phoneme": "i",
+"Frequency":             28 
+},
+{
+ "Group": "g3",
+"Phoneme": "I",
+"Frequency":             35 
+},
+{
+ "Group": "g3",
+"Phoneme": "E",
+"Frequency":             34 
+},
+{
+ "Group": "g3",
+"Phoneme": "i",
+"Frequency":             34 
+},
+{
+ "Group": "g3",
+"Phoneme": "I",
+"Frequency":             32 
+},
+{
+ "Group": "g3",
+"Phoneme": "E",
+"Frequency":             36 
+} 
+]
+  
+      if(!(opts.type==="pieChart" || opts.type==="sparklinePlus" || opts.type==="bulletChart")) {
+        var data = d3.nest()
+          .key(function(d){
+            //return opts.group === undefined ? 'main' : d[opts.group]
+            //instead of main would think a better default is opts.x
+            return opts.group === undefined ? opts.y : d[opts.group];
+          })
+          .entries(data);
+      }
+      
+      if (opts.disabled != undefined){
+        data.map(function(d, i){
+          d.disabled = opts.disabled[i]
+        })
+      }
+      
+      nv.addGraph(function() {
+        var chart = nv.models[opts.type]()
+          .width(opts.width)
+          .height(opts.height)
+          
+        if (opts.type != "bulletChart"){
+          chart
+            .x(function(d) { return d[opts.x] })
+            .y(function(d) { return d[opts.y] })
+        }
+          
+         
+        
+          
+        
+
+        
+        
+        
+      
+       d3.select("#" + opts.id)
+        .append('svg')
+        .datum(data)
+        .transition().duration(500)
+        .call(chart);
+
+       nv.utils.windowResize(chart.update);
+       return chart;
+      });
+    };
+</script>
+
+--- &interactive
+
+## Interactive Console
+
+<!-- MotionChart generated in R 3.1.3 by googleVis 0.5.8 package -->
+<!-- Sat Mar 28 14:41:41 2015 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataMotionChartIDc842f436339 () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+ "Apples",
+2008,
+"West",
+98,
+78,
+20,
+"2008-12-31" 
+],
+[
+ "Apples",
+2009,
+"West",
+111,
+79,
+32,
+"2009-12-31" 
+],
+[
+ "Apples",
+2010,
+"West",
+89,
+76,
+13,
+"2010-12-31" 
+],
+[
+ "Oranges",
+2008,
+"East",
+96,
+81,
+15,
+"2008-12-31" 
+],
+[
+ "Bananas",
+2008,
+"East",
+85,
+76,
+9,
+"2008-12-31" 
+],
+[
+ "Oranges",
+2009,
+"East",
+93,
+80,
+13,
+"2009-12-31" 
+],
+[
+ "Bananas",
+2009,
+"East",
+94,
+78,
+16,
+"2009-12-31" 
+],
+[
+ "Oranges",
+2010,
+"East",
+98,
+91,
+7,
+"2010-12-31" 
+],
+[
+ "Bananas",
+2010,
+"East",
+81,
+71,
+10,
+"2010-12-31" 
+] 
+];
+data.addColumn('string','Fruit');
+data.addColumn('number','Year');
+data.addColumn('string','Location');
+data.addColumn('number','Sales');
+data.addColumn('number','Expenses');
+data.addColumn('number','Profit');
+data.addColumn('string','Date');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartMotionChartIDc842f436339() {
+var data = gvisDataMotionChartIDc842f436339();
+var options = {};
+options["width"] =    600;
+options["height"] =    500;
+options["state"] = "";
+
+    var chart = new google.visualization.MotionChart(
+    document.getElementById('MotionChartIDc842f436339')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "motionchart";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartMotionChartIDc842f436339);
+})();
+function displayChartMotionChartIDc842f436339() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartIDc842f436339"></script>
+ 
+<!-- divChart -->
+  
+<div id="MotionChartIDc842f436339" 
+  style="width: 600; height: 500;">
+</div>
+
