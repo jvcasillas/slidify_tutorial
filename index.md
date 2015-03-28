@@ -556,14 +556,14 @@ It is easier to interpret things if we overlay a fitted normal distribution for 
 ## Interactive Console
 
 <!-- MotionChart generated in R 3.1.3 by googleVis 0.5.8 package -->
-<!-- Sat Mar 28 14:41:41 2015 -->
+<!-- Sat Mar 28 14:50:55 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartIDc842f436339 () {
+function gvisDataMotionChartIDd8c19d13c90 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -661,15 +661,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartIDc842f436339() {
-var data = gvisDataMotionChartIDc842f436339();
+function drawChartMotionChartIDd8c19d13c90() {
+var data = gvisDataMotionChartIDd8c19d13c90();
 var options = {};
 options["width"] =    600;
 options["height"] =    500;
 options["state"] = "";
 
     var chart = new google.visualization.MotionChart(
-    document.getElementById('MotionChartIDc842f436339')
+    document.getElementById('MotionChartIDd8c19d13c90')
     );
     chart.draw(data,options);
     
@@ -693,9 +693,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartMotionChartIDc842f436339);
+callbacks.push(drawChartMotionChartIDd8c19d13c90);
 })();
-function displayChartMotionChartIDc842f436339() {
+function displayChartMotionChartIDd8c19d13c90() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -719,11 +719,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartIDc842f436339"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartIDd8c19d13c90"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartIDc842f436339" 
+<div id="MotionChartIDd8c19d13c90" 
   style="width: 600; height: 500;">
 </div>
 
