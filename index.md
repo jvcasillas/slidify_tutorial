@@ -555,6 +555,8 @@ It is easier to interpret things if we overlay a fitted normal distribution for 
 
 ## Interactive Console
 
+<div align="center">
+
 <!-- MotionChart generated in R 3.1.3 by googleVis 0.5.8 package -->
 <!-- Sat Mar 28 14:52:32 2015 -->
 
@@ -726,4 +728,4 @@ callbacks.shift()();
 <div id="MotionChartIDd8c557f0f7d" 
   style="width: 600; height: 500;">
 </div>
-
+</div>

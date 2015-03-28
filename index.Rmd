@@ -351,9 +351,11 @@ n1$print('chart1')
 
 ## Interactive Console
 
+<div align="center">
+
 ```{r, results = 'asis', echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
 require(googleVis)
 M1 <- gvisMotionChart(Fruits, idvar = 'Fruit', timevar = 'Year')
 print(M1, tag = 'chart')
 ```
-
+</div>
