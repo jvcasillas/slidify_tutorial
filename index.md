@@ -188,7 +188,7 @@ slidify('index.Rmd')
 
 --- .segue bg:grey
 
-## More to come...
+## More to come soon...
 
 --- 
 
