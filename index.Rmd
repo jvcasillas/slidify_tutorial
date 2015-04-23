@@ -368,3 +368,5 @@ print(M1, tag = 'chart')
 
 ## HTML widget library
 
+```{r, 'leaflet1', echo=TRUE}
+```
