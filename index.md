@@ -729,3 +729,12 @@ callbacks.shift()();
   style="width: 600; height: 500;">
 </div>
 </div>
+
+--- .segue bg:grey
+
+## HTML widgets
+
+---
+
+## HTML widget library
+
