@@ -368,5 +368,10 @@ print(M1, tag = 'chart')
 
 ## HTML widget library
 
-```{r, 'leaflet1', echo=TRUE}
+```{r echo=FALSE}
+library(knitr)
+read_chunk('html_widgets.R')
+```
+
+```{r, 'leaflet1', results = 'asis', comment = NA, message = F, echo = F, cache=FALSE}
 ```
