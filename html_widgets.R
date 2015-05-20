@@ -1,5 +1,5 @@
 
-
+library(htmlwidgets)
 
 
 
@@ -10,7 +10,9 @@ m = leaflet() %>%
 addTiles() %>%
 setView(-110.950282, 32.232402, zoom = 17) %>%
 addPopups(-110.950282, 32.232906, 'Here is the <b>Department of Spanish and Portuguese</b>, UofA')
-m
+
+saveWidget(m, 'leaflet1.html')
+
 
 
 
@@ -22,31 +24,40 @@ m
 ## @knitr dygraphs1
 library(dygraphs)
 lungDeaths <- cbind(mdeaths, fdeaths)
-dygraph(lungDeaths)
+dyex1 <- dygraph(lungDeaths)
 
+saveWidget(dyex1, 'dygraphs1.html')
 
 ## @knitr dygraphs2
-dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+dyex2 <- dygraph(nhtemp, main = "New Haven Temperatures") %>% 
   dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
+
+saveWidget(dyex2, 'dygraphs2.html')
 
 
 ## @knitr dygraphs3
-dygraph(lungDeaths) %>%
+dyex3 <- dygraph(lungDeaths) %>%
   dySeries("mdeaths", label = "Male") %>%
   dySeries("fdeaths", label = "Female") %>%
   dyOptions(stackedGraph = TRUE) %>%
   dyRangeSelector(height = 20)
 
+saveWidget(dyex3, 'dygraphs3.html')
 
-## @knitr dygraphs3
+
+## @knitr dygraphs4
 hw <- HoltWinters(ldeaths)
 predicted <- predict(hw, n.ahead = 72, prediction.interval = TRUE)
 
-dygraph(predicted, main = "Predicted Lung Deaths (UK)") %>%
+dyex4 <- dygraph(predicted, main = "Predicted Lung Deaths (UK)") %>%
   dyAxis("x", drawGrid = FALSE) %>%
   dySeries(c("lwr", "fit", "upr"), label = "Deaths") %>%
   dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1")) %>%
   dyRoller(rollPeriod = 5)
+
+saveWidget(dyex4, 'dygraphs4.html')
+
+
 
 
 
@@ -60,30 +71,37 @@ library(RColorBrewer)
 
 tmp <- data.frame(year=seq(1790, 1970, 10), uspop=as.numeric(uspop))
 
-tmp %>%
-  mjs_plot(x=year, y=uspop) %>%
+mg1 <- tmp %>%
+  mjs_plot(x=year, y=uspop, height = 450, width = 650) %>%
   mjs_line() %>%
   mjs_add_marker(1850, "Something Wonderful") %>%
   mjs_add_baseline(150, "Something Awful")
 
+saveWidget(mg1, 'metricsgraphics1.html')
+
 
 ## @knitr metricsgraphics2
-tmp %>%
+mg2 <- tmp %>%
   mjs_plot(x=uspop, y=year, width=500, height=400) %>%
   mjs_bar() %>%
   mjs_axis_x(xax_format = 'plain')
 
+saveWidget(mg2, 'metricsgraphics2.html')
+
 
 ## @knitr metricsgraphics3
-mtcars %>%
-  mjs_plot(x=wt, y=mpg, width=600, height=500) %>%
+mg3 <- mtcars %>%
+  mjs_plot(x=wt, y=mpg, width=750, height=450) %>%
   mjs_point(color_accessor=carb, size_accessor=carb) %>%
   mjs_labs(x="Weight of Car", y="Miles per Gallon")
 
+saveWidget(mg3, 'metricsgraphics3.html')
+
+
 
 ## @knitr metricsgraphics4
-mtcars %>%
-  mjs_plot(x=wt, y=mpg, width=600, height=500) %>%
+mg4 <- mtcars %>%
+  mjs_plot(x=wt, y=mpg, width=750, height=450) %>%
   mjs_point(color_accessor=cyl,
             x_rug=TRUE, y_rug=TRUE,
             size_accessor=carb,
@@ -93,12 +111,16 @@ mtcars %>%
   mjs_labs(x="Weight of Car", y="Miles per Gallon") %>%
   mjs_add_legend(legend="X")
 
+saveWidget(mg4, 'metricsgraphics4.html')
+
 
 ## @knitr metricsgraphics5
-mtcars %>%
-  mjs_plot(x=wt, y=mpg, width=600, height=500) %>%
+mg5 <- mtcars %>%
+  mjs_plot(x=wt, y=mpg, width=700, height=450) %>%
   mjs_point(least_squares=TRUE) %>%
   mjs_labs(x="Weight of Car", y="Miles per Gallon")
+
+saveWidget(mg5, 'metricsgraphics5.html')
 
 
 ## @knitr metricsgraphics6
@@ -109,13 +131,15 @@ stocks <- data.frame(
   Y = rnorm(10, 0, 2),
   Z = rnorm(10, 0, 4))
 
-stocks %>%
-  mjs_plot(x=time, y=X) %>%
+mg6 <- stocks %>%
+  mjs_plot(x=time, y=X, height = 400, width = 750) %>%
   mjs_line() %>%
   mjs_add_line(Y) %>%
   mjs_add_line(Z) %>%
   mjs_axis_x(xax_format="date") %>%
   mjs_add_legend(legend=c("X", "Y", "Z"))
+
+saveWidget(mg6, 'metricsgraphics6.html')
 
 
 ## @knitr metricsgraphics7
@@ -144,6 +168,10 @@ s2 <- stocks2 %>%
 mjs_grid(s1, s2, ncol=2)
 
 
+
+
+
+
 ## @knitr networkD31
 library(networkD3)
 src <- c("A", "A", "A", "A",
@@ -151,18 +179,29 @@ src <- c("A", "A", "A", "A",
 target <- c("B", "C", "D", "J",
             "E", "F", "G", "H", "I")
 networkData <- data.frame(src, target)
-simpleNetwork(networkData)
+nw1 <- simpleNetwork(networkData)
+saveWidget(nw1, 'networkD31.html')
 
 ## @knitr networkD32
 data(MisLinks, MisNodes)
-forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
+nw2 <- forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
              Target = "target", Value = "value", NodeID = "name",
              Group = "group", opacity = 0.4)
+saveWidget(nw2, 'networkD32.html')
+
+
+
+
 
 
 ## @knitr datatable1
 library(DT)
-datatable(iris)
+dt1 <- datatable(iris)
+saveWidget(dt1, 'dt1.html')
+
+
+
+
 
 
 ## @knitr threejs1
@@ -170,24 +209,31 @@ library(threejs)
 z <- seq(-10, 10, 0.01)
 x <- cos(z)
 y <- sin(z)
-scatterplot3js(x,y,z, color=rainbow(length(z)))
+threejs1 <- scatterplot3js(x,y,z, color=rainbow(length(z)))
+saveWidget(threejs1, 'threejs1.html')
+
 
 ## @knitr threejs2
 N <- 100
 i <- sample(3, N, replace=TRUE)
 x <- matrix(rnorm(N*3),ncol=3)
 lab <- c("small", "bigger", "biggest")
-scatterplot3js(x, color=rainbow(N), labels=lab[i], size=i, renderer="canvas")
+threejs2 <- scatterplot3js(x, color=rainbow(N), labels=lab[i], size=i, renderer="canvas")
+saveWidget(threejs2, 'threejs2.html')
+
+
+
 
 
 ## @knitr diagrammer1
 library(DiagrammeR)
-grViz("
+dg1 <- grViz("
   digraph {
     layout = twopi
     node [shape = circle]
     A -> {B C D} 
-  }")
+  }", height = 400, width = 700)
+saveWidget(dg1, 'diagrammer1.html')
 
 ## @knitr diagrammer2
 boxes_and_circles <- "
@@ -212,7 +258,6 @@ digraph boxes_and_circles {
   graph [overlap = true, fontsize = 10]
 }
 "
-
-grViz(boxes_and_circles)
-grViz(boxes_and_circles, engine = "circo")
+dg2 <- grViz(boxes_and_circles, engine = "circo", height = 400, width = 700)
+saveWidget(dg2, 'diagrammer2.html', selfcontained = TRUE)
 

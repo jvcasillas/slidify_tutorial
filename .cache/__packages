@@ -3,3 +3,6 @@ slidify
 rCharts
 googleVis
 knitr
+htmlwidgets
+leaflet
+dplyr

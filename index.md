@@ -15,6 +15,10 @@ biglogo     : ua.png
 assets      : {assets: ../../assets}
 --- .class #id
 
+<style type="text/css">
+body {background:grey transparent;
+}
+</style>
 
 ## Slidify
 
@@ -738,16 +742,123 @@ callbacks.shift()();
 
 ## HTML widget library
 
-- leaflet
-- dygraphs
-- metricsgraphics
-- networkD3
-- DT
-- threejs
-- DiagrammeR
+HTML widgets are interactive graphics made for the web. These are the main libraries available:
+
+- [leaflet](https://rstudio.github.io/leaflet/): interactive maps
+- [dygraphs](https://rstudio.github.io/dygraphs/): charting time series data
+- [metricsgraphics](http://www.htmlwidgets.org/showcase_metricsgraphics.html): scatterplots, linegraphs and histograms
+- [networkD3](http://christophergandrud.github.io/networkD3/): network graphs
+- [DT](https://rstudio.github.io/DT/): print dataframes as html
+- [threejs](http://www.htmlwidgets.org/showcase_threejs.html): 3d scatterplots and [globes](https://www.chromeexperiments.com/globe)
+- [DiagrammeR](http://rich-iannone.github.io/DiagrammeR/): pretty diagrams
 
 
 ---
 
+## leaflet
 
 
+
+<iframe src="./assets/widgets/leaflet1.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## dygraphs
+
+<iframe src="./assets/widgets/dygraphs1.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## dygraphs (cont)
+
+<iframe src="./assets/widgets/dygraphs2.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## dygraphs (cont)
+
+<iframe src="./assets/widgets/dygraphs3.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## dygraphs (cont)
+
+<iframe src="./assets/widgets/dygraphs4.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## metricsgraphics
+
+<iframe src="./assets/widgets/metricsgraphics1.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## metricsgraphics (cont)
+
+<iframe src="./assets/widgets/metricsgraphics2.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## metricsgraphics (cont)
+
+<iframe src="./assets/widgets/metricsgraphics3.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## metricsgraphics (cont)
+
+<iframe src="./assets/widgets/metricsgraphics4.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## metricsgraphics (cont)
+
+<iframe src="./assets/widgets/metricsgraphics5.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## metricsgraphics (cont)
+
+<iframe src="./assets/widgets/metricsgraphics6.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## networkD3
+
+<iframe src="./assets/widgets/networkD31.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## networkD3 (cont)
+
+<iframe src="./assets/widgets/networkD32.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## DT
+
+<iframe src="./assets/widgets/dt1.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## threejs
+
+<iframe src="./assets/widgets/threejs1.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## threejs (cont)
+
+<iframe src="./assets/widgets/threejs2.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## DiagrammeR
+
+<iframe src="./assets/widgets/diagrammer1.html" width=100% height=100% allowtransparency="true"> </iframe>
+
+---
+
+## DiagrammeR (cont)
+
+<iframe src="./assets/widgets/diagrammer2.html" width=100% height=100% allowtransparency="true"> </iframe>
