@@ -6,3 +6,5 @@ knitr
 htmlwidgets
 leaflet
 dplyr
+ggvis
+ggplot2

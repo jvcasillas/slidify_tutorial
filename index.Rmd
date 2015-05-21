@@ -22,7 +22,8 @@ body {background:grey transparent;
 
 ## Slidify
 
-- I am going to show you how to make a presentation just like this one
+- In this tutorial I am going to show you how to make a presentation just like this one
+- I will also show some of the features that can be used in conjunction with slidify (i.e. quizzes and html widgets)
 - You can download the current version of this presentation [here](https://github.com/jvcasill/slidify_tutorial/tree/gh-pages), use it as a template and edit as you like
 - Or you can follow these instructions to make one of your own
 
@@ -34,12 +35,11 @@ body {background:grey transparent;
 
 ## Install packages
 
-- You need to make sure you have all of the necessary dependencies installed on your computer
-- Open Rstudio and copy and paste the following code into the console (you only need to do this once)
+- `Slidify` works in R, so you need to download [that](http://cran.r-project.org) if you haven't yet.
+- You also need to make sure you have all of the necessary dependencies installed on your computer
+- Open R and copy and paste the following code into the console (you only need to do this once)
 
-</br>
-
-```
+```{r, eval=FALSE}
 install.packages("devtools")  
 install_github('slidify', 'ramnathv')  
 install_github('slidifyLibraries', 'ramnathv')
@@ -50,8 +50,8 @@ install_github('slidifyLibraries', 'ramnathv')
 ## Create slidify
 
 - Each presentation is called a 'deck'
-- Set your working directory to wherever you want the folder
-- Load slidify package with `library(slidify)`
+- Set your working directory to wherever you want the folder (`setwd("path/here")`)
+- Load the `slidify` package with `library(slidify)`
 - Create the deck with `author('mydeck')`
 	- You can name it whatever you want
 	- This will create a folder with all the necessary files
@@ -64,7 +64,7 @@ install_github('slidifyLibraries', 'ramnathv')
 - All of the necessary files are there
 - The `.Rmd` file is the only one you need to work with
 	- This is where you will actually modify the deck (your presentation)
-	- It should have opened automatically in RStudio
+	- It should have opened automatically if you are using RStudio
 - The YAML front matter (the very first thing in the `.Rmd` file) should look like this...
 
 --- .class #id
@@ -166,7 +166,7 @@ assets      : {assets: ../../assets}
 ### `---`
 
 - To end a slide use three dashes
-- Importantly after you end a slide, you designate the class of the next one 
+- Importantly after you end a slide, you designate the style of the next one 
 - The default (what you see here) is `.class #id`
 - So I ended this slide using `--- .class #id`
 
@@ -183,7 +183,7 @@ assets      : {assets: ../../assets}
 - Once you have made the slides in markdown you are ready to generate the html file that will be your presentation
 - You do this using the `slidify()` command like this...
 
-```
+```{r, eval=FALSE}
 slidify('index.Rmd')
 ```
 
@@ -192,26 +192,60 @@ slidify('index.Rmd')
 
 --- .segue bg:grey
 
-## More to come soon...
+# Incorporating r code
 
 --- 
 
 
 
 
-
-
-
-
 ## R code
 
-```{r, fig.height = 4, fig.width = 8, fig.align = 'center'}
-plot(cars)
+- You can insert code by surrounding it with \`\`\`{r}, followed by \`\`\` (three more ticks)...
+
+\`\`\`{r}  
+code here  
+\`\`\`  
+
+- Here is an example of some simple math
+
+```{r}
+2 + 2
 ```
 
-<div class='well'>
-<p><b> Note: </b> You can hit <code>p</code> on any slide to reveal the source (this doesn't seem to work in safari</p>
-</div>
+- To do this I typed
+
+\`\`\`{r}  
+2 + 2  
+\`\`\`  
+
+---
+
+## R code (cont)
+
+- Here is another example
+
+```{r, fig.height = 4.5, fig.width = 8, fig.align = 'center', message=FALSE}
+plot(cars)
+abline(lm(dist ~ speed, data = cars), col = "red")
+```
+
+---
+
+## R code (cont)
+
+- Here is a more complex example
+
+```{r, fig.height = 4, fig.width = 10, fig.align = 'center', message=FALSE, cache=FALSE}
+library(ggplot2)
+g <- ggplot(cars, aes(speed, dist))
+g + geom_point() +
+	geom_smooth()
+```
+
+--- .segue bg:grey
+
+# Quizzes
 
 --- &radio
 
@@ -328,28 +362,9 @@ It is easier to interpret things if we overlay a fitted normal distribution for 
 1. Males on OkCupid probably tend to inflate their heights!
 2. You can also see a more subtle vanity at work: starting at roughly 5' 8", the top of the dotted curve tilts even further rightward. This means that guys as they get closer to six feet round up a bit more than usual, stretching for that coveted psychological benchmark.
 
----
+--- .segue bg:grey
 
-## Interactive Chart
-
-</br>
-
-```{r echo = F, results = 'asis', message=FALSE}
-require(rCharts)
-group <- c(rep("g1", 10), rep("g2", 10), rep("g3", 10))
-phon  <- c(rep("i", 1), rep("I", 1), rep("E", 1))
-freq1  <- floor(runif(10, 0, 20))
-freq2  <- floor(runif(10, 15, 30))
-freq3  <- floor(runif(10, 25, 40))
-freq <- c(freq1, freq2, freq3)
-
-df <- data.frame(Group = group, 
-                 Phoneme = phon, 
-                 Frequency = freq)
-n1 <- nPlot(Frequency ~ Phoneme, group = 'Group', type = 'multiBarChart',
-  data = df)
-n1$print('chart1')
-```
+# Interactivity
 
 ---
 
@@ -366,7 +381,7 @@ print(M1, tag = 'chart')
 
 --- .segue bg:grey
 
-## HTML widgets (coming soon)
+## HTML widgets
 
 ---
 

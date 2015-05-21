@@ -22,7 +22,8 @@ body {background:grey transparent;
 
 ## Slidify
 
-- I am going to show you how to make a presentation just like this one
+- In this tutorial I am going to show you how to make a presentation just like this one
+- I will also show some of the features that can be used in conjunction with slidify (i.e. quizzes and html widgets)
 - You can download the current version of this presentation [here](https://github.com/jvcasill/slidify_tutorial/tree/gh-pages), use it as a template and edit as you like
 - Or you can follow these instructions to make one of your own
 
@@ -34,12 +35,12 @@ body {background:grey transparent;
 
 ## Install packages
 
-- You need to make sure you have all of the necessary dependencies installed on your computer
-- Open Rstudio and copy and paste the following code into the console (you only need to do this once)
+- `Slidify` works in R, so you need to download [that](http://cran.r-project.org) if you haven't yet.
+- You also need to make sure you have all of the necessary dependencies installed on your computer
+- Open R and copy and paste the following code into the console (you only need to do this once)
 
-</br>
 
-```
+```r
 install.packages("devtools")  
 install_github('slidify', 'ramnathv')  
 install_github('slidifyLibraries', 'ramnathv')
@@ -50,8 +51,8 @@ install_github('slidifyLibraries', 'ramnathv')
 ## Create slidify
 
 - Each presentation is called a 'deck'
-- Set your working directory to wherever you want the folder
-- Load slidify package with `library(slidify)`
+- Set your working directory to wherever you want the folder (`setwd("path/here")`)
+- Load the `slidify` package with `library(slidify)`
 - Create the deck with `author('mydeck')`
 	- You can name it whatever you want
 	- This will create a folder with all the necessary files
@@ -64,7 +65,7 @@ install_github('slidifyLibraries', 'ramnathv')
 - All of the necessary files are there
 - The `.Rmd` file is the only one you need to work with
 	- This is where you will actually modify the deck (your presentation)
-	- It should have opened automatically in RStudio
+	- It should have opened automatically if you are using RStudio
 - The YAML front matter (the very first thing in the `.Rmd` file) should look like this...
 
 --- .class #id
@@ -166,7 +167,7 @@ assets      : {assets: ../../assets}
 ### `---`
 
 - To end a slide use three dashes
-- Importantly after you end a slide, you designate the class of the next one 
+- Importantly after you end a slide, you designate the style of the next one 
 - The default (what you see here) is `.class #id`
 - So I ended this slide using `--- .class #id`
 
@@ -183,7 +184,8 @@ assets      : {assets: ../../assets}
 - Once you have made the slides in markdown you are ready to generate the html file that will be your presentation
 - You do this using the `slidify()` command like this...
 
-```
+
+```r
 slidify('index.Rmd')
 ```
 
@@ -192,29 +194,71 @@ slidify('index.Rmd')
 
 --- .segue bg:grey
 
-## More to come soon...
+# Incorporating r code
 
 --- 
 
 
 
 
-
-
-
-
 ## R code
+
+- You can insert code by surrounding it with \`\`\`{r}, followed by \`\`\` (three more ticks)...
+
+\`\`\`{r}  
+code here  
+\`\`\`  
+
+- Here is an example of some simple math
+
+
+```r
+2 + 2
+```
+
+```
+## [1] 4
+```
+
+- To do this I typed
+
+\`\`\`{r}  
+2 + 2  
+\`\`\`  
+
+---
+
+## R code (cont)
+
+- Here is another example
 
 
 ```r
 plot(cars)
+abline(lm(dist ~ speed, data = cars), col = "red")
 ```
 
-<img src="assets/fig/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
-<div class='well'>
-<p><b> Note: </b> You can hit <code>p</code> on any slide to reveal the source (this doesn't seem to work in safari</p>
-</div>
+---
+
+## R code (cont)
+
+- Here is a more complex example
+
+
+```r
+library(ggplot2)
+g <- ggplot(cars, aes(speed, dist))
+g + geom_point() +
+	geom_smooth()
+```
+
+<img src="assets/fig/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+
+--- .segue bg:grey
+
+# Quizzes
 
 --- &radio
 
@@ -331,229 +375,9 @@ It is easier to interpret things if we overlay a fitted normal distribution for 
 1. Males on OkCupid probably tend to inflate their heights!
 2. You can also see a more subtle vanity at work: starting at roughly 5' 8", the top of the dotted curve tilts even further rightward. This means that guys as they get closer to six feet round up a bit more than usual, stretching for that coveted psychological benchmark.
 
----
+--- .segue bg:grey
 
-## Interactive Chart
-
-</br>
-
-
-<div id = 'chart1' class = 'rChart nvd3'></div>
-<script type='text/javascript'>
- $(document).ready(function(){
-      drawchart1()
-    });
-    function drawchart1(){  
-      var opts = {
- "dom": "chart1",
-"width":    800,
-"height":    400,
-"x": "Phoneme",
-"y": "Frequency",
-"group": "Group",
-"type": "multiBarChart",
-"id": "chart1" 
-},
-        data = [
- {
- "Group": "g1",
-"Phoneme": "i",
-"Frequency":              8 
-},
-{
- "Group": "g1",
-"Phoneme": "I",
-"Frequency":             13 
-},
-{
- "Group": "g1",
-"Phoneme": "E",
-"Frequency":             10 
-},
-{
- "Group": "g1",
-"Phoneme": "i",
-"Frequency":              1 
-},
-{
- "Group": "g1",
-"Phoneme": "I",
-"Frequency":              4 
-},
-{
- "Group": "g1",
-"Phoneme": "E",
-"Frequency":             13 
-},
-{
- "Group": "g1",
-"Phoneme": "i",
-"Frequency":             15 
-},
-{
- "Group": "g1",
-"Phoneme": "I",
-"Frequency":              5 
-},
-{
- "Group": "g1",
-"Phoneme": "E",
-"Frequency":             18 
-},
-{
- "Group": "g1",
-"Phoneme": "i",
-"Frequency":              6 
-},
-{
- "Group": "g2",
-"Phoneme": "I",
-"Frequency":             26 
-},
-{
- "Group": "g2",
-"Phoneme": "E",
-"Frequency":             15 
-},
-{
- "Group": "g2",
-"Phoneme": "i",
-"Frequency":             17 
-},
-{
- "Group": "g2",
-"Phoneme": "I",
-"Frequency":             17 
-},
-{
- "Group": "g2",
-"Phoneme": "E",
-"Frequency":             29 
-},
-{
- "Group": "g2",
-"Phoneme": "i",
-"Frequency":             23 
-},
-{
- "Group": "g2",
-"Phoneme": "I",
-"Frequency":             27 
-},
-{
- "Group": "g2",
-"Phoneme": "E",
-"Frequency":             17 
-},
-{
- "Group": "g2",
-"Phoneme": "i",
-"Frequency":             24 
-},
-{
- "Group": "g2",
-"Phoneme": "I",
-"Frequency":             29 
-},
-{
- "Group": "g3",
-"Phoneme": "E",
-"Frequency":             38 
-},
-{
- "Group": "g3",
-"Phoneme": "i",
-"Frequency":             26 
-},
-{
- "Group": "g3",
-"Phoneme": "I",
-"Frequency":             39 
-},
-{
- "Group": "g3",
-"Phoneme": "E",
-"Frequency":             39 
-},
-{
- "Group": "g3",
-"Phoneme": "i",
-"Frequency":             28 
-},
-{
- "Group": "g3",
-"Phoneme": "I",
-"Frequency":             35 
-},
-{
- "Group": "g3",
-"Phoneme": "E",
-"Frequency":             34 
-},
-{
- "Group": "g3",
-"Phoneme": "i",
-"Frequency":             34 
-},
-{
- "Group": "g3",
-"Phoneme": "I",
-"Frequency":             32 
-},
-{
- "Group": "g3",
-"Phoneme": "E",
-"Frequency":             36 
-} 
-]
-  
-      if(!(opts.type==="pieChart" || opts.type==="sparklinePlus" || opts.type==="bulletChart")) {
-        var data = d3.nest()
-          .key(function(d){
-            //return opts.group === undefined ? 'main' : d[opts.group]
-            //instead of main would think a better default is opts.x
-            return opts.group === undefined ? opts.y : d[opts.group];
-          })
-          .entries(data);
-      }
-      
-      if (opts.disabled != undefined){
-        data.map(function(d, i){
-          d.disabled = opts.disabled[i]
-        })
-      }
-      
-      nv.addGraph(function() {
-        var chart = nv.models[opts.type]()
-          .width(opts.width)
-          .height(opts.height)
-          
-        if (opts.type != "bulletChart"){
-          chart
-            .x(function(d) { return d[opts.x] })
-            .y(function(d) { return d[opts.y] })
-        }
-          
-         
-        
-          
-        
-
-        
-        
-        
-      
-       d3.select("#" + opts.id)
-        .append('svg')
-        .datum(data)
-        .transition().duration(500)
-        .call(chart);
-
-       nv.utils.windowResize(chart.update);
-       return chart;
-      });
-    };
-</script>
+# Interactivity
 
 ---
 
@@ -562,14 +386,14 @@ It is easier to interpret things if we overlay a fitted normal distribution for 
 <div align="center">
 
 <!-- MotionChart generated in R 3.1.3 by googleVis 0.5.8 package -->
-<!-- Sat Mar 28 14:52:32 2015 -->
+<!-- Thu May 21 12:35:43 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartIDd8c557f0f7d () {
+function gvisDataMotionChartID10e3618c31666 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -667,15 +491,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartIDd8c557f0f7d() {
-var data = gvisDataMotionChartIDd8c557f0f7d();
+function drawChartMotionChartID10e3618c31666() {
+var data = gvisDataMotionChartID10e3618c31666();
 var options = {};
 options["width"] =    600;
 options["height"] =    500;
 options["state"] = "";
 
     var chart = new google.visualization.MotionChart(
-    document.getElementById('MotionChartIDd8c557f0f7d')
+    document.getElementById('MotionChartID10e3618c31666')
     );
     chart.draw(data,options);
     
@@ -699,9 +523,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartMotionChartIDd8c557f0f7d);
+callbacks.push(drawChartMotionChartID10e3618c31666);
 })();
-function displayChartMotionChartIDd8c557f0f7d() {
+function displayChartMotionChartID10e3618c31666() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -725,18 +549,18 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartIDd8c557f0f7d"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID10e3618c31666"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartIDd8c557f0f7d" 
+<div id="MotionChartID10e3618c31666" 
   style="width: 600; height: 500;">
 </div>
 </div>
 
 --- .segue bg:grey
 
-## HTML widgets (coming soon)
+## HTML widgets
 
 ---
 

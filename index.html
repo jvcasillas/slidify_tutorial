@@ -77,7 +77,8 @@ body {background:grey transparent;
 <h2>Slidify</h2>
 
 <ul>
-<li>I am going to show you how to make a presentation just like this one</li>
+<li>In this tutorial I am going to show you how to make a presentation just like this one</li>
+<li>I will also show some of the features that can be used in conjunction with slidify (i.e. quizzes and html widgets)</li>
 <li>You can download the current version of this presentation <a href="https://github.com/jvcasill/slidify_tutorial/tree/gh-pages">here</a>, use it as a template and edit as you like</li>
 <li>Or you can follow these instructions to make one of your own</li>
 </ul>
@@ -102,13 +103,12 @@ body {background:grey transparent;
   </hgroup>
   <article data-timings="">
     <ul>
-<li>You need to make sure you have all of the necessary dependencies installed on your computer</li>
-<li>Open Rstudio and copy and paste the following code into the console (you only need to do this once)</li>
+<li><code>Slidify</code> works in R, so you need to download <a href="http://cran.r-project.org">that</a> if you haven&#39;t yet.</li>
+<li>You also need to make sure you have all of the necessary dependencies installed on your computer</li>
+<li>Open R and copy and paste the following code into the console (you only need to do this once)</li>
 </ul>
 
-<p></br></p>
-
-<pre><code>install.packages(&quot;devtools&quot;)  
+<pre><code class="r">install.packages(&quot;devtools&quot;)  
 install_github(&#39;slidify&#39;, &#39;ramnathv&#39;)  
 install_github(&#39;slidifyLibraries&#39;, &#39;ramnathv&#39;)
 </code></pre>
@@ -124,8 +124,8 @@ install_github(&#39;slidifyLibraries&#39;, &#39;ramnathv&#39;)
   <article data-timings="">
     <ul>
 <li>Each presentation is called a &#39;deck&#39;</li>
-<li>Set your working directory to wherever you want the folder</li>
-<li>Load slidify package with <code>library(slidify)</code></li>
+<li>Set your working directory to wherever you want the folder (<code>setwd(&quot;path/here&quot;)</code>)</li>
+<li>Load the <code>slidify</code> package with <code>library(slidify)</code></li>
 <li>Create the deck with <code>author(&#39;mydeck&#39;)</code>
 
 <ul>
@@ -150,7 +150,7 @@ install_github(&#39;slidifyLibraries&#39;, &#39;ramnathv&#39;)
 
 <ul>
 <li>This is where you will actually modify the deck (your presentation)</li>
-<li>It should have opened automatically in RStudio</li>
+<li>It should have opened automatically if you are using RStudio</li>
 </ul></li>
 <li>The YAML front matter (the very first thing in the <code>.Rmd</code> file) should look like this...</li>
 </ul>
@@ -287,7 +287,7 @@ assets      : {assets: ../../assets}
 ### `---`
 
 - To end a slide use three dashes
-- Importantly after you end a slide, you designate the class of the next one 
+- Importantly after you end a slide, you designate the style of the next one 
 - The default (what you see here) is `.class #id`
 - So I ended this slide using `--- .class #id`
 
@@ -312,7 +312,7 @@ assets      : {assets: ../../assets}
 <li>You do this using the <code>slidify()</code> command like this...</li>
 </ul>
 
-<pre><code>slidify(&#39;index.Rmd&#39;)
+<pre><code class="r">slidify(&#39;index.Rmd&#39;)
 </code></pre>
 
 <ul>
@@ -326,7 +326,7 @@ assets      : {assets: ../../assets}
 
 <slide class="segue" id="slide-12" style="background:grey;">
   <hgroup>
-    <h2>More to come soon...</h2>
+    <h1>Incorporating r code</h1>
   </hgroup>
   <article data-timings="">
     
@@ -339,20 +339,87 @@ assets      : {assets: ../../assets}
     <h2>R code</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">plot(cars)
+    <ul>
+<li>You can insert code by surrounding it with ```{r}, followed by ``` (three more ticks)...</li>
+</ul>
+
+<p>```{r}<br>
+code here<br>
+```  </p>
+
+<ul>
+<li>Here is an example of some simple math</li>
+</ul>
+
+<pre><code class="r">2 + 2
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" /></p>
+<pre><code>## [1] 4
+</code></pre>
 
-<div class='well'>
-<p><b> Note: </b> You can hit <code>p</code> on any slide to reveal the source (this doesn't seem to work in safari</p>
-</div>
+<ul>
+<li>To do this I typed</li>
+</ul>
+
+<p>```{r}<br>
+2 + 2<br>
+```  </p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>R code (cont)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Here is another example</li>
+</ul>
+
+<pre><code class="r">plot(cars)
+abline(lm(dist ~ speed, data = cars), col = &quot;red&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>R code (cont)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Here is a more complex example</li>
+</ul>
+
+<pre><code class="r">library(ggplot2)
+g &lt;- ggplot(cars, aes(speed, dist))
+g + geom_point() +
+    geom_smooth()
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-16" style="background:grey;">
+  <hgroup>
+    <h1>Quizzes</h1>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
   <hgroup>
     <h2>Radio</h2>
   </hgroup>
@@ -385,7 +452,7 @@ assets      : {assets: ../../assets}
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-15" style="background:;">
+<slide class="" id="slide-18" style="background:;">
   <hgroup>
     <h2>Radio (Two Column)</h2>
   </hgroup>
@@ -421,7 +488,7 @@ assets      : {assets: ../../assets}
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-16" style="background:;">
+<slide class="" id="slide-19" style="background:;">
   <hgroup>
     <h2>Checkbox</h2>
   </hgroup>
@@ -462,7 +529,7 @@ assets      : {assets: ../../assets}
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-17" style="background:;">
+<slide class="" id="slide-20" style="background:;">
   <hgroup>
     <h2>Multi Text</h2>
   </hgroup>
@@ -499,7 +566,7 @@ assets      : {assets: ../../assets}
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-18" style="background:;">
+<slide class="" id="slide-21" style="background:;">
   <hgroup>
     <h2>Submit and Compare</h2>
   </hgroup>
@@ -526,7 +593,7 @@ assets      : {assets: ../../assets}
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-19" style="background:;">
+<slide class="" id="slide-22" style="background:;">
   <hgroup>
     <h2>Submit and Compare (2 Column)</h2>
   </hgroup>
@@ -569,236 +636,17 @@ assets      : {assets: ../../assets}
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-20" style="background:;">
+<slide class="segue" id="slide-23" style="background:grey;">
   <hgroup>
-    <h2>Interactive Chart</h2>
+    <h1>Interactivity</h1>
   </hgroup>
   <article data-timings="">
-    <p></br></p>
-
-<div id = 'chart1' class = 'rChart nvd3'></div>
-
-<script type='text/javascript'>
- $(document).ready(function(){
-      drawchart1()
-    });
-    function drawchart1(){  
-      var opts = {
- "dom": "chart1",
-"width":    800,
-"height":    400,
-"x": "Phoneme",
-"y": "Frequency",
-"group": "Group",
-"type": "multiBarChart",
-"id": "chart1" 
-},
-        data = [
- {
- "Group": "g1",
-"Phoneme": "i",
-"Frequency":              8 
-},
-{
- "Group": "g1",
-"Phoneme": "I",
-"Frequency":             13 
-},
-{
- "Group": "g1",
-"Phoneme": "E",
-"Frequency":             10 
-},
-{
- "Group": "g1",
-"Phoneme": "i",
-"Frequency":              1 
-},
-{
- "Group": "g1",
-"Phoneme": "I",
-"Frequency":              4 
-},
-{
- "Group": "g1",
-"Phoneme": "E",
-"Frequency":             13 
-},
-{
- "Group": "g1",
-"Phoneme": "i",
-"Frequency":             15 
-},
-{
- "Group": "g1",
-"Phoneme": "I",
-"Frequency":              5 
-},
-{
- "Group": "g1",
-"Phoneme": "E",
-"Frequency":             18 
-},
-{
- "Group": "g1",
-"Phoneme": "i",
-"Frequency":              6 
-},
-{
- "Group": "g2",
-"Phoneme": "I",
-"Frequency":             26 
-},
-{
- "Group": "g2",
-"Phoneme": "E",
-"Frequency":             15 
-},
-{
- "Group": "g2",
-"Phoneme": "i",
-"Frequency":             17 
-},
-{
- "Group": "g2",
-"Phoneme": "I",
-"Frequency":             17 
-},
-{
- "Group": "g2",
-"Phoneme": "E",
-"Frequency":             29 
-},
-{
- "Group": "g2",
-"Phoneme": "i",
-"Frequency":             23 
-},
-{
- "Group": "g2",
-"Phoneme": "I",
-"Frequency":             27 
-},
-{
- "Group": "g2",
-"Phoneme": "E",
-"Frequency":             17 
-},
-{
- "Group": "g2",
-"Phoneme": "i",
-"Frequency":             24 
-},
-{
- "Group": "g2",
-"Phoneme": "I",
-"Frequency":             29 
-},
-{
- "Group": "g3",
-"Phoneme": "E",
-"Frequency":             38 
-},
-{
- "Group": "g3",
-"Phoneme": "i",
-"Frequency":             26 
-},
-{
- "Group": "g3",
-"Phoneme": "I",
-"Frequency":             39 
-},
-{
- "Group": "g3",
-"Phoneme": "E",
-"Frequency":             39 
-},
-{
- "Group": "g3",
-"Phoneme": "i",
-"Frequency":             28 
-},
-{
- "Group": "g3",
-"Phoneme": "I",
-"Frequency":             35 
-},
-{
- "Group": "g3",
-"Phoneme": "E",
-"Frequency":             34 
-},
-{
- "Group": "g3",
-"Phoneme": "i",
-"Frequency":             34 
-},
-{
- "Group": "g3",
-"Phoneme": "I",
-"Frequency":             32 
-},
-{
- "Group": "g3",
-"Phoneme": "E",
-"Frequency":             36 
-} 
-]
-  
-      if(!(opts.type==="pieChart" || opts.type==="sparklinePlus" || opts.type==="bulletChart")) {
-        var data = d3.nest()
-          .key(function(d){
-            //return opts.group === undefined ? 'main' : d[opts.group]
-            //instead of main would think a better default is opts.x
-            return opts.group === undefined ? opts.y : d[opts.group];
-          })
-          .entries(data);
-      }
-      
-      if (opts.disabled != undefined){
-        data.map(function(d, i){
-          d.disabled = opts.disabled[i]
-        })
-      }
-      
-      nv.addGraph(function() {
-        var chart = nv.models[opts.type]()
-          .width(opts.width)
-          .height(opts.height)
-          
-        if (opts.type != "bulletChart"){
-          chart
-            .x(function(d) { return d[opts.x] })
-            .y(function(d) { return d[opts.y] })
-        }
-          
-         
-        
-          
-        
-
-        
-        
-        
-      
-       d3.select("#" + opts.id)
-        .append('svg')
-        .datum(data)
-        .transition().duration(500)
-        .call(chart);
-
-       nv.utils.windowResize(chart.update);
-       return chart;
-      });
-    };
-</script>
-
+    
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-21" style="background:;">
+<slide class="" id="slide-24" style="background:;">
   <hgroup>
     <h2>Interactive Console</h2>
   </hgroup>
@@ -806,14 +654,14 @@ assets      : {assets: ../../assets}
     <div align="center">
 
 <!-- MotionChart generated in R 3.1.3 by googleVis 0.5.8 package -->
-<!-- Sat Mar 28 14:52:32 2015 -->
+<!-- Thu May 21 12:35:43 2015 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataMotionChartIDd8c557f0f7d () {
+function gvisDataMotionChartID10e3618c31666 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -911,15 +759,15 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartMotionChartIDd8c557f0f7d() {
-var data = gvisDataMotionChartIDd8c557f0f7d();
+function drawChartMotionChartID10e3618c31666() {
+var data = gvisDataMotionChartID10e3618c31666();
 var options = {};
 options["width"] =    600;
 options["height"] =    500;
 options["state"] = "";
 
     var chart = new google.visualization.MotionChart(
-    document.getElementById('MotionChartIDd8c557f0f7d')
+    document.getElementById('MotionChartID10e3618c31666')
     );
     chart.draw(data,options);
     
@@ -943,9 +791,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartMotionChartIDd8c557f0f7d);
+callbacks.push(drawChartMotionChartID10e3618c31666);
 })();
-function displayChartMotionChartIDd8c557f0f7d() {
+function displayChartMotionChartID10e3618c31666() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -969,11 +817,11 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartIDd8c557f0f7d"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartMotionChartID10e3618c31666"></script>
  
 <!-- divChart -->
   
-<div id="MotionChartIDd8c557f0f7d" 
+<div id="MotionChartID10e3618c31666" 
   style="width: 600; height: 500;">
 </div>
 
@@ -983,9 +831,9 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="segue" id="slide-22" style="background:grey;">
+<slide class="segue" id="slide-25" style="background:grey;">
   <hgroup>
-    <h2>HTML widgets (coming soon)</h2>
+    <h2>HTML widgets</h2>
   </hgroup>
   <article data-timings="">
     
@@ -993,7 +841,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-23" style="background:;">
+<slide class="" id="slide-26" style="background:;">
   <hgroup>
     <h2>HTML widget library</h2>
   </hgroup>
@@ -1014,7 +862,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-24" style="background:;">
+<slide class="" id="slide-27" style="background:;">
   <hgroup>
     <h2>leaflet</h2>
   </hgroup>
@@ -1025,7 +873,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-25" style="background:;">
+<slide class="" id="slide-28" style="background:;">
   <hgroup>
     <h2>dygraphs</h2>
   </hgroup>
@@ -1036,7 +884,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-26" style="background:;">
+<slide class="" id="slide-29" style="background:;">
   <hgroup>
     <h2>dygraphs (cont)</h2>
   </hgroup>
@@ -1047,7 +895,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-27" style="background:;">
+<slide class="" id="slide-30" style="background:;">
   <hgroup>
     <h2>dygraphs (cont)</h2>
   </hgroup>
@@ -1058,7 +906,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-28" style="background:;">
+<slide class="" id="slide-31" style="background:;">
   <hgroup>
     <h2>dygraphs (cont)</h2>
   </hgroup>
@@ -1069,7 +917,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-29" style="background:;">
+<slide class="" id="slide-32" style="background:;">
   <hgroup>
     <h2>metricsgraphics</h2>
   </hgroup>
@@ -1080,7 +928,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-30" style="background:;">
+<slide class="" id="slide-33" style="background:;">
   <hgroup>
     <h2>metricsgraphics (cont)</h2>
   </hgroup>
@@ -1091,7 +939,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-31" style="background:;">
+<slide class="" id="slide-34" style="background:;">
   <hgroup>
     <h2>metricsgraphics (cont)</h2>
   </hgroup>
@@ -1102,7 +950,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-32" style="background:;">
+<slide class="" id="slide-35" style="background:;">
   <hgroup>
     <h2>metricsgraphics (cont)</h2>
   </hgroup>
@@ -1113,7 +961,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-33" style="background:;">
+<slide class="" id="slide-36" style="background:;">
   <hgroup>
     <h2>metricsgraphics (cont)</h2>
   </hgroup>
@@ -1124,7 +972,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-34" style="background:;">
+<slide class="" id="slide-37" style="background:;">
   <hgroup>
     <h2>metricsgraphics (cont)</h2>
   </hgroup>
@@ -1135,7 +983,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-35" style="background:;">
+<slide class="" id="slide-38" style="background:;">
   <hgroup>
     <h2>networkD3</h2>
   </hgroup>
@@ -1146,7 +994,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-36" style="background:;">
+<slide class="" id="slide-39" style="background:;">
   <hgroup>
     <h2>networkD3 (cont)</h2>
   </hgroup>
@@ -1157,7 +1005,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-37" style="background:;">
+<slide class="" id="slide-40" style="background:;">
   <hgroup>
     <h2>DT</h2>
   </hgroup>
@@ -1168,7 +1016,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-38" style="background:;">
+<slide class="" id="slide-41" style="background:;">
   <hgroup>
     <h2>threejs</h2>
   </hgroup>
@@ -1179,7 +1027,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-39" style="background:;">
+<slide class="" id="slide-42" style="background:;">
   <hgroup>
     <h2>threejs (cont)</h2>
   </hgroup>
@@ -1190,7 +1038,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-40" style="background:;">
+<slide class="" id="slide-43" style="background:;">
   <hgroup>
     <h2>DiagrammeR</h2>
   </hgroup>
@@ -1201,7 +1049,7 @@ callbacks.shift()();
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-41" style="background:;">
+<slide class="" id="slide-44" style="background:;">
   <hgroup>
     <h2>DiagrammeR (cont)</h2>
   </hgroup>
@@ -1284,7 +1132,7 @@ callbacks.shift()();
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='More to come soon...'>
+        data-slide=12 title='Incorporating r code'>
          12
       </a>
     </li>
@@ -1296,115 +1144,115 @@ callbacks.shift()();
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Radio'>
+        data-slide=14 title='R code (cont)'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Radio (Two Column)'>
+        data-slide=15 title='R code (cont)'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Checkbox'>
+        data-slide=16 title='Quizzes'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Multi Text'>
+        data-slide=17 title='Radio'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='Submit and Compare'>
+        data-slide=18 title='Radio (Two Column)'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='Submit and Compare (2 Column)'>
+        data-slide=19 title='Checkbox'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='Interactive Chart'>
+        data-slide=20 title='Multi Text'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Interactive Console'>
+        data-slide=21 title='Submit and Compare'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='HTML widgets (coming soon)'>
+        data-slide=22 title='Submit and Compare (2 Column)'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='HTML widget library'>
+        data-slide=23 title='Interactivity'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='leaflet'>
+        data-slide=24 title='Interactive Console'>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='dygraphs'>
+        data-slide=25 title='HTML widgets'>
          25
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='dygraphs (cont)'>
+        data-slide=26 title='HTML widget library'>
          26
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='dygraphs (cont)'>
+        data-slide=27 title='leaflet'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='dygraphs (cont)'>
+        data-slide=28 title='dygraphs'>
          28
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='metricsgraphics'>
+        data-slide=29 title='dygraphs (cont)'>
          29
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='metricsgraphics (cont)'>
+        data-slide=30 title='dygraphs (cont)'>
          30
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title='metricsgraphics (cont)'>
+        data-slide=31 title='dygraphs (cont)'>
          31
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=32 title='metricsgraphics (cont)'>
+        data-slide=32 title='metricsgraphics'>
          32
       </a>
     </li>
@@ -1422,44 +1270,62 @@ callbacks.shift()();
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title='networkD3'>
+        data-slide=35 title='metricsgraphics (cont)'>
          35
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='networkD3 (cont)'>
+        data-slide=36 title='metricsgraphics (cont)'>
          36
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=37 title='DT'>
+        data-slide=37 title='metricsgraphics (cont)'>
          37
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=38 title='threejs'>
+        data-slide=38 title='networkD3'>
          38
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=39 title='threejs (cont)'>
+        data-slide=39 title='networkD3 (cont)'>
          39
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=40 title='DiagrammeR'>
+        data-slide=40 title='DT'>
          40
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=41 title='DiagrammeR (cont)'>
+        data-slide=41 title='threejs'>
          41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='threejs (cont)'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='DiagrammeR'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='DiagrammeR (cont)'>
+         44
       </a>
     </li>
   </ul>
